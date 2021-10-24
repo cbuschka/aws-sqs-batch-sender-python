@@ -3,14 +3,16 @@ import re
 import setuptools
 import subprocess
 
+project_dir = os.path.abspath(os.path.dirname(__file__))
+
 def get_readme():
-    with open("readme.md", "r", encoding='utf-8') as fh:
+    with open(os.path.join(project_dir, "readme.md"), "r", encoding='utf-8') as fh:
         readme = fh.read()
         return readme
 
 
 def get_requirements():
-    with open(os.path.join(PACKAGE_ROOT, 'requirements.txt')) as f:
+    with open(os.path.join(project_dir, 'requirements.txt'), "r", encoding="utf-8") as f:
         requirements =[r.strip() for r in f.readlines()]
         return requirements
 
