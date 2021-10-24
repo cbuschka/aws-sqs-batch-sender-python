@@ -6,11 +6,11 @@ init:
 		python3 -B -m virtualenv -p python3 ${TOP_DIR}/.venv/; \
 	fi && \
 	source ${TOP_DIR}/.venv/bin/activate && \
-	pip install -r ${TOP_DIR}/requirements.txt
+	pip install -r ${TOP_DIR}/requirements.txt -r ${TOP_DIR}/requirements-dev.txt
 
 build:	init
 
 tests:	build
 	cd ${TOP_DIR} && \
 	source ${TOP_DIR}/.venv/bin/activate && \
-	PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$[TOP_DIR} coverage run -m unittest discover --verbose -t ${TOP_DIR} -s ${TOP_DIR}/tests --pattern '*_test.py'
+	PYTHONPATH=$[TOP_DIR} python3 -B -m coverage run -m unittest discover --verbose -t ${TOP_DIR} -s ${TOP_DIR}/tests --pattern '*_test.py'
