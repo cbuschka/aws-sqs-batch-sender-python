@@ -261,7 +261,7 @@ class BatchSenderTest(unittest.TestCase):
         self.assertEqual(expected_calls, calls)
 
     def assert_messages_buffer_empty(self):
-        self.assertEquals([], self.batch_sender._messages_buffer)
+        self.assertEqual([], self.batch_sender._messages_buffer)
 
     def assert_messages_buffer_is(self, expected_messages_buffer):
-        self.assertEquals(expected_messages_buffer, self.batch_sender._messages_buffer)
+        self.assertEqual(expected_messages_buffer, self.batch_sender._messages_buffer)
