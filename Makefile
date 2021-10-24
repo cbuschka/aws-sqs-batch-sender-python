@@ -16,6 +16,13 @@ tests:	build
 	source ${TOP_DIR}/.venv/bin/activate && \
 	PYTHONPATH=$[TOP_DIR} python3 -B -m coverage run -m unittest discover --verbose -t ${TOP_DIR} -s ${TOP_DIR}/tests --pattern '*_test.py'
 
+integration-tests:	build
+	cd ${TOP_DIR} && \
+	source ${TOP_DIR}/.venv/bin/activate && \
+	docker-compose -f ${TOP_DIR}/localstack/docker-compose.yml up -d && \
+	PYTHONPATH=$[TOP_DIR} python3 -B -m coverage run -m unittest discover --verbose -t ${TOP_DIR} -s ${TOP_DIR}/integration_tests --pattern '*_test.py'
+	docker-compose -f ${TOP_DIR}/localstack/docker-compose.yml down
+
 dist:   tests
 	source ${TOP_DIR}/.venv/bin/activate && \
 	python3 -B ${TOP_DIR}/setup.py sdist bdist_wheel
