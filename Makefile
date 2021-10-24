@@ -3,7 +3,7 @@ SHELL := /bin/bash
 
 init:
 	if [ ! -d "${TOP_DIR}/.venv/" ]; then \
-		virtualenv -p python3 ${TOP_DIR}/.venv/; \
+		python3 -B -m virtualenv -p python3 ${TOP_DIR}/.venv/; \
 	fi && \
 	source ${TOP_DIR}/.venv/bin/activate && \
 	pip install -r ${TOP_DIR}/requirements.txt
