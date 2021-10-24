@@ -1,0 +1,11 @@
+[run]
+omit = .venv/
+
+[paths]
+source = aws_sqs_batch_sender/
+
+[html]
+directory = target/report/
+
+[report]
+omit = tests/*
