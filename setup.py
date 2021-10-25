@@ -42,7 +42,7 @@ setuptools.setup(
     url="https://github.com/cbuschka/aws-sqs-batch-sender-python",
     packages=setuptools.find_packages(exclude=('tests','integration_tests')),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
