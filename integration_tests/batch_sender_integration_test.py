@@ -25,7 +25,7 @@ class BatchSenderIntegrationTest(unittest.TestCase):
 
     def test_send_and_receive(self):
         self.queue.purge()
-        with BatchSender(self.queue.url, self.sqs.client) as batch_sender:
+        with BatchSender(self.queue.url, self.sqs.client, flush_amount=2, overwrite_by_id=True) as batch_sender:
             for i in range(10):
                 batch_sender.send_message(Id=str(uuid.uuid4()), MessageBody="key{}".format(i))
 
