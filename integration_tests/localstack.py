@@ -3,9 +3,8 @@ from botocore.exceptions import ClientError
 
 
 class Localstack(object):
-    def __init__(self, endpoint_url):
-        self.endpoint_url = endpoint_url
-        self.sqs = boto3.resource('sqs', endpoint_url=self.endpoint_url, region_name='default')
+    def __init__(self, endpoint_url, use_ssl):
+        self.sqs = boto3.resource('sqs', endpoint_url=endpoint_url, region_name='default', use_ssl=use_ssl)
 
     def get_queue(self, queue_name):
         return self.sqs.get_queue_by_name(QueueName=queue_name)
