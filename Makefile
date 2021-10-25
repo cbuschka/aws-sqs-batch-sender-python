@@ -29,9 +29,14 @@ integration-tests:	build
 	source ${TOP_DIR}/.venv/bin/activate && \
 	PYTHONPATH=$[TOP_DIR} python3 -B -m coverage run -m unittest discover --verbose -t ${TOP_DIR} -s ${TOP_DIR}/integration_tests --pattern '*_test.py'
 
-dist:   tests
+dist:   tests install-test
 	source ${TOP_DIR}/.venv/bin/activate && \
 	python3 -B ${TOP_DIR}/setup.py sdist bdist_wheel
+
+install-test:	dist
+	source ${TOP_DIR}/.venv/bin/activate && \
+	pip install -e . && \
+	pip uninstall -y aws-sqs-batch-sender
 
 clean:
 	cd ${TOP_DIR} && \
